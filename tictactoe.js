@@ -28,15 +28,15 @@ function tryMove(elem) {
 
     if (isWinner() == 1) {
         log("X wins yayyayayyy");
-        clearBoard();
+        //clearBoard();
     }
     else if (isWinner() == 2) {
         log("O wins yayyayayayyayy");
-        clearBoard();
+        //clearBoard();
     }
     else if (isDraw()) {
         log("lulz draw");
-        clearBoard();
+        //clearBoard();
     }
 }
 
@@ -95,6 +95,11 @@ function drawX(id) {
 function drawO(id) {
     var box = document.getElementById(id);
     box.innerHTML = "O";
+}
+
+function start() {
+	clearBoard();
+	log("lulz");
 }
 
 function log(msg) {
