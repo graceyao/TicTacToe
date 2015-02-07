@@ -1,3 +1,4 @@
+var msgId = "message";
 var board = [0,0,0,0,0,0,0,0,0];
 var turn = 1;
 var win = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
@@ -10,7 +11,7 @@ function tryMove(elem) {
     var space = elemToMove(move);
 
     if (isValidMove(space)) {
-        document.getElementById("message").innerHTML = "";
+        log("");
         board[space] = turn;
         elem = moveToElem(space);
         if (turn == 1) {
@@ -22,19 +23,19 @@ function tryMove(elem) {
         switchTurns();
     }
     else {
-        document.getElementById("message").innerHTML = "lulz";
+        log("stahp");
     }
 
     if (isWinner() == 1) {
-        alert("X wins yayyayayyy");
+        log("X wins yayyayayyy");
         clearBoard();
     }
     else if (isWinner() == 2) {
-        alert("O wins yayyayayayyayy");
+        log("O wins yayyayayayyayy");
         clearBoard();
     }
     else if (isDraw()) {
-        alert("lulz draw");
+        log("lulz draw");
         clearBoard();
     }
 }
@@ -94,6 +95,10 @@ function drawX(id) {
 function drawO(id) {
     var box = document.getElementById(id);
     box.innerHTML = "O";
+}
+
+function log(msg) {
+	document.getElementById(msgId).innerHTML = msg;
 }
 
 function clearBoard() {
