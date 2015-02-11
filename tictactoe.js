@@ -5,38 +5,40 @@ var win = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 var spaces = ["rowOneColOne", "rowOneColTwo", "rowOneColThree", 
                     "rowTwoColOne", "rowTwoColTwo", "rowTwoColThree",
                     "rowThreeColOne", "rowThreeColTwo", "rowThreeColThree"];
+var done = 1;
 
 function tryMove(elem) {
     var move = elem.id;
     var space = elemToMove(move);
-
-    if (isValidMove(space)) {
-        log("");
-        board[space] = turn;
-        elem = moveToElem(space);
-        if (turn == 1) {
-            drawX(elem);
+    if (done != 1) {
+        if (isValidMove(space)) {
+            log("");
+            board[space] = turn;
+            elem = moveToElem(space);
+            if (turn == 1) {
+                drawX(elem);
+            }
+            else {
+                drawO(elem);
+            }
+            switchTurns();
         }
         else {
-            drawO(elem);
+            log("stahp");
         }
-        switchTurns();
-    }
-    else {
-        log("stahp");
-    }
 
-    if (isWinner() == 1) {
-        log("X wins yayyayayyy");
-        //clearBoard();
-    }
-    else if (isWinner() == 2) {
-        log("O wins yayyayayayyayy");
-        //clearBoard();
-    }
-    else if (isDraw()) {
-        log("lulz draw");
-        //clearBoard();
+        if (isWinner() == 1) {
+            log("X wins yayyayayyy") ;
+            done = 1;
+        }
+        else if (isWinner() == 2) {
+            log("O wins yayyayayayyayy");
+            done = 1;
+        }
+        else if (isDraw()) {
+            log("lulz draw");
+            done = 1;
+        }
     }
 }
 
@@ -99,7 +101,8 @@ function drawO(id) {
 
 function start() {
 	clearBoard();
-	log("lulz");
+    done = 0;
+	log("hello");
 }
 
 function log(msg) {
